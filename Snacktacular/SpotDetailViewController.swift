@@ -25,6 +25,7 @@ class SpotDetailViewController: UIViewController {
     
     var spot: Spot!
     var reviews: Reviews!
+    var photos: Photos!
     let regionDistance: CLLocationDistance = 750 //750 meters or about a half mile
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation!
@@ -41,6 +42,8 @@ class SpotDetailViewController: UIViewController {
         //mapView.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
         if spot == nil{ //We are adding a new record, fields should be editable
             spot = Spot()
@@ -58,6 +61,7 @@ class SpotDetailViewController: UIViewController {
         }
         
          reviews = Reviews()
+         photos = Photos()
 //        nameField.text = spot.name
 //        addressField.text = spot.address
         
@@ -149,9 +153,22 @@ class SpotDetailViewController: UIViewController {
     
 
     
+    func cameraOrLibraryAlert() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: nil)
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cameraAction)
+        alertController.addAction(photoLibraryAction)
+        alertController.addAction(cancelAction)
+        present(alertController,animated: true, completion: nil)
+        
+        
+    }
     
     
     @IBAction func photoButtonPressed(_ sender: UIButton) {
+        cameraOrLibraryAlert()
     }
     
     @IBAction func reviewButtonPressed(_ sender: UIButton) {
@@ -301,3 +318,16 @@ extension SpotDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+extension SpotDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return photos.photoArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! SpotPhotosCollectionViewCell
+        cell.photo = photos.photoArray[indexPath.row]
+        return cell
+    }
+    
+    
+}
