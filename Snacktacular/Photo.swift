@@ -34,6 +34,13 @@ class Photo {
     }
     
     
+    convenience init(dictionary: [String: Any]) {
+        let description = dictionary["description"] as! String? ?? ""
+        let postedBy = dictionary["postedBy"] as! String? ?? ""
+        let date = dictionary["date"] as! Date? ?? Date()
+        self.init(image: UIImage(), description: description, postedBy: postedBy, date: date, documentUUID: "")
+    }
+    
     
     
     func saveData(spot: Spot, completion: @escaping (Bool) -> ()){
