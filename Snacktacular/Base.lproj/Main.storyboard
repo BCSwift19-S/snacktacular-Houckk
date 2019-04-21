@@ -610,7 +610,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="Hjq-g3-Hi1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ogR-AG-IGN">
@@ -689,12 +689,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="OgI-Lh-Ekq">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uXL-UP-IYi">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="uXL-UP-IYi">
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="svk-Vq-BtW" id="lCd-Ws-5g8"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="hO8-Gs-oBr">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="hO8-Gs-oBr">
                             <connections>
                                 <action selector="saveButtonPressed:" destination="svk-Vq-BtW" id="asB-tC-a0Z"/>
                             </connections>
