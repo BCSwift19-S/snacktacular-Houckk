@@ -40,6 +40,16 @@ class SnackUser{
     }
     
     
+    
+    convenience init(dictionary: [String: Any]) {
+        let email = dictionary["email"] as! String? ?? ""
+        let displayName = dictionary["displayName"] as! String? ?? ""
+        let photoURL = dictionary["photoURL"] as! String? ?? ""
+        let userSince = dictionary["userSince"] as! Date? ?? Date()
+        self.init(email: email, displayName: displayName, photoURL: photoURL, userSince: userSince, documentID: "")
+    }
+    
+    
     func saveIfNewUser(){
         let db = Firestore.firestore()
         let userRef = db.collection("users").document(documentID)
