@@ -18,6 +18,7 @@ class SpotsListViewController: UIViewController {
     @IBOutlet weak var sortSegmentedControl: UISegmentedControl!
     var spots: Spots!
     var authUI: FUIAuth!
+    var snackUser: SnackUser!
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation!
     
@@ -61,11 +62,14 @@ class SpotsListViewController: UIViewController {
 //            FUITwitterAuth(),
 //            FUIPhoneAuth(authUI:FUIAuth.defaultAuthUI()),
             ]
+        let currentUser = authUI.auth?.currentUser
         if authUI.auth?.currentUser == nil {
             self.authUI?.providers = providers
             present(authUI.authViewController(), animated: true, completion: nil)
         } else {
             tableView.isHidden = false
+            snackUser = SnackUser(user: currentUser!)
+            snackUser.saveIfNewUser()
         }
     }
     
